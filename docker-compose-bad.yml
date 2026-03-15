@@ -1,0 +1,15 @@
+
+version: '2' 
+
+services:
+  database:
+    image: postgres:latest     
+environment:
+      - POSTGRES_PASSWORD=secret     
+ports:
+      - "5432:5432" 
+  web-app:
+    image: nginx:latest
+
+depends_on:
+- database
