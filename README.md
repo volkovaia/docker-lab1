@@ -244,4 +244,10 @@ networks:
 ```
 docker-compose exec web-app ping database
 ```
-система выдает ошибку, что подтверждает успешную изоляцию сервисов друг от друга.
+система выдает ошибку, что подтверждает успешную изоляцию сервисов друг от друга:
+
+```
+$ docker-compose -f docker-compose.yml exec web-app ping database
+time="2026-03-15T20:45:57+03:00" level=warning msg="C:\\cygwin\\home\\Ирина\\dockergood\\docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion"
+ping: bad address 'database'
+```
