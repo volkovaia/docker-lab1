@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  database:
+    image: postgres:15-alpine
+    environment:
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db_password
+    secrets:
+      - db_password
+    networks:
+      - backend_net
+
+  web-app:
+    image: nginx:1.25-alpine
+    depends_on:
+      - database
+    networks:
+      - frontend_net
+
+secrets:
+  db_password:
+    file: ./db_password.txt
+
+networks:
+  frontend_net:
+    driver: bridge
+  backend_net:
+    driver: bridge
